@@ -1,0 +1,153 @@
+<%- include('../includes/start.ejs') %>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"
+    integrity="sha512-E378bwaeZf1nwXeJGIwTB58A5gPt5jFU3u6aTGja4ZdRFJeo/N/REKnBgNZOZlH6JdnOPO98vg2AnSGaNfCMFQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="/css/homePage.css">
+
+  <style>
+    h1.search{
+      text-align: center;
+      margin: 3rem;
+    }
+    
+    .outer img{
+       max-width:400px;
+       max-height: 400px;
+       padding-left: 1rem;
+
+    }
+
+    .outer{
+      width: 50%;
+      box-shadow: -3px 5px 15px rgba(0, 0, 0, 0.47);
+      border-radius: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 3rem;
+      min-height: fit-content;
+    }
+
+    .main{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    
+
+    .details{
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      height: 20rem;
+      width: 80%;
+      text-align: center;
+    }
+
+    .buttonForm{
+      margin-left: 18rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .buttonForm.button{
+      width: 30%;
+    }
+
+    .cartButton{
+      margin: 1rem 0;
+      width: 10rem;
+      background: rgb(255,172,28);
+      background: linear-gradient(90deg, rgba(255,172,28,1) 2%, rgba(242,140,40,1) 89%);
+      border-radius: 1rem;
+      
+      padding: 0.5rem;
+    }
+    .cartButton:hover{
+      background-color: #f28c28;
+    }
+
+    .nav-item{
+      margin-top: 10px;
+      margin-right: 20px;
+    
+    }
+
+    .dropdown{
+      margin-right : 20px;
+    }
+
+    .userName{
+    margin-right: 2rem;
+    
+  }
+
+  .userIcon{
+    margin-right: 0.7rem !important;
+    margin-top: 0.5rem;
+  }
+    
+  .dividivi{
+    display: flex;
+    justify-content: center;
+  }
+  </style>
+
+  </head>
+
+  <body>
+
+    <%- include('../includes/navigation.ejs') %>
+
+
+
+
+
+    <div class="dividivi">
+      <div class="outer">
+        <h1 class="search">Your Search Result</h1>
+        
+        <div class="main">
+          <div class="image">
+            <img src="<%= product.imageUrl %>" alt="products">
+          </div>
+          <div class="details">
+            <h4>
+              <strong><%= product.title %></strong>
+            </h4>
+            <h4>Price - <%= product.price %>
+            </h4>
+            <h4>Rating - <i class="far fa-star"></i><%= product.rating %>
+            </h4>
+            <h5>
+              <%= product.description %>
+            </h5>
+
+          </div>
+        </div>
+
+        <div>
+          <form action="/add-to-cart" method="post" class = "buttonForm">
+            <input type="hidden" name='productId' value='<%= product.id %>'>
+            <button type="submit" class="cartButton " onclick="window.location.href=''"><i
+                class="fa-solid fa-cart-shopping fa-xl"></i></button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+      
+
+
+
+
+
+
+
+
+
+      <%- include('../includes/end.ejs') %>

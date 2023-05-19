@@ -1,0 +1,92 @@
+<nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary navbar-main">
+  <div class="container-fluid">
+    <a class="navbar-brand navbar-text" href="/">
+      <img style="height: 60px;width:60px ;" src="/css/images/TastyBites-logos_black.png  " alt="Logo">
+      <h1 class="navbar-heading">TastyBites</h1>
+    </a>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown"
+      aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <% if (!isAdminAuthenticated) { %>
+      <form class="searchForm" action="/search-bar" method="post">
+        <input type="text" placeholder="Search for Food .. " name="searchItem" class="searchInput" autocomplete="off">
+        <button type="submit" class="searchButton"><i class="fas fa-search fa-xl"></i></button>
+      </form>
+    <% } %>
+    
+
+    <div class=" collapse navbar-collapse navbar-items" id="navbarNavDarkDropdown">
+      <ul class="ms-auto navbar-nav other-items-size">
+        
+<li class="nav-item">
+            <a class="nav-link home" href="/">Home</a>
+          </li>
+        <% if (isAuthenticated) { %>
+          
+          
+          <li class="nav-item">
+            <a class="nav-link my-cart" href="/cart">My Cart</a>
+          </li>  
+  
+          <li class="nav-item">
+            <a class="nav-link my-cart" href="/orders">My Orders</a>
+          </li> 
+  
+          <div class="dropdown">
+            <button>Products</button>
+            <div class="dropdown-content">
+             
+              <!-- <a href="/restaurant/add-product">Add Restaurant</a>
+              <a href="/restaurant/products">Show Restaurants</a>
+              <a href="/admin/restaurants">Restaurants Collaborating</a> -->
+              <a href="/non-veg">Non-Veg</a>
+                  <a href="/veg">Veg</a>
+                  <a href="/italian">Italian</a>
+                  <a href="/chinese">Chinese</a>
+  
+            </div>
+          </div>
+  
+          <li style="display: flex; text-align: column;">
+            <i style="font-size: 30px; margin-right: 0; padding-top: 0.4rem;" class="userIcon fas fa-user-circle"></i><p style=" padding-top:0.4rem;margin-left: 0; margin-top: 0.75rem;" class="userName"><%=userName%></p>
+          </li>
+
+        <% } else if(isAdminAuthenticated) { %>
+         
+        
+          <div class="dropdown">
+            <button>Admin</button>
+            <div class="dropdown-content">
+              <a href="/restaurant/add-product">Add Restaurant</a>
+              <a href="/restaurant/products">Show Restaurants</a>
+              <a href="/admin/restaurants">Restaurants Collaborating</a>
+            </div>
+          </div>
+          
+         
+
+          <% } else if (isOwnerAuthenticated) { %>
+               <div class="dropdown">
+            <button>Restaurants</button>
+            <div class="dropdown-content">
+              <a href="/admin/add-product">Add Products</a>
+              <a href="/admin/products">Products</a>
+            </div> 
+          </div>
+
+        <% } %>
+
+          <form style="padding-top: 1.5%;" action="/auth-logout" method="post">
+            <button class="btn btn-dark" >Logout</button>
+          </form>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
